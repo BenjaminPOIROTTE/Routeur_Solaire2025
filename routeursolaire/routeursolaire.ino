@@ -18,8 +18,8 @@ Merci à Jean-Victor pour l'idée d'optimisation de la gestion des Dimmers
 ///////// CONFIGURATION ///// PARTIE A MODIFIER POUR VOTRE RESEAU //////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-const char* ssid = "";                            // nom de votre réseau wifi
-const char* password = "";       // mot de passe de votre réseau wifi
+const char* ssid = "Livebox-734C";                            // nom de votre réseau wifi
+const char* password = "aq5meHzLcQhkMvCKzj";       // mot de passe de votre réseau wifi
 boolean mqtt = 0;                                              // activer ou désactiver MQTT Mosquitto pour Home Assistant : 0 ou 1
 int relayOn = 20;                                            // puissance du surplus pour déclencher le relay //
 int relayOff = 10;                                            // puissance du surplus pour stopper le relay //
@@ -583,7 +583,7 @@ if ( Auto == 1 )
         u8g2.print("P1 ");
         u8g2.print(Power1);
         u8g2.print(" W@");
-        u8g2.setCursor(10, 47);
+        u8g2.setCursor(2, 47);
         u8g2.print("P2 ");
         u8g2.print(Power2);
         u8g2.print(" W");
@@ -655,7 +655,14 @@ u8g2.sendBuffer();  // l'image qu'on vient de construire est affichée à l'écr
 }
   
 void loop() {
-  if( Energy2> 1 && Energy2 <600)
+  
+  
+  if(Energy2<25)
+  {
+      digitalWrite(33, LOW);
+
+  }
+  if( Energy2>25  && Energy2 <600)
   {
  // Allumer la LED
   digitalWrite(33, HIGH);
